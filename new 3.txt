@@ -1,0 +1,646 @@
+<style>
+    .doc{              
+        padding: 20px 20px 0;
+        position: absolute;
+        top: 7.5%;
+        background: #fff;
+        width: 100%;
+        left: 0;
+        right: 0;
+        border-bottom: 1px solid #d6d6d6;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2) !important;
+        border-radius: 6px
+   }
+     .doc::before { content: ''; height: 15px; width: 15px; color: #ff0707; border-left: 1px solid #d6d6d6; border-top: 1px solid #d6d6d6; background: #fff; -ms-transform: rotate(45deg); -webkit-transform: rotate(45deg); transform: rotate(45deg); position: absolute; right: 265px; top: -8px;}
+
+    .hoverable_menu_div{width: 79%; position: fixed; right: 12px;}
+    .hoverable_menu_div .allproducts h3{
+        padding: 0;
+        margin: 0 0 15px 0;
+        color: #444; 
+        font-size: 15px;
+        font-weight: 400;
+    }
+    .hoverable_menu_div .allproducts{
+        border-right: 0.2px solid #e4e4e4;
+        padding:0; 
+    }
+    .hoverable_menu_div .pwa{
+        position: unset;
+        top: 0;
+    }
+    .hoverable_menu_div .subHead{
+        font-size: 9px; 
+        font-weight: 700;
+        color: #676767;    
+        line-height: 2.5;
+    }
+    .hoverable_menu_div .producttabs{
+        font-size: 10px; 
+        padding: 13px 0;
+        border-bottom: 1px solid #fff;
+    }
+    .hoverable_menu_div .mainProducts{   
+        border-bottom: 1px solid rgba(220, 216, 216, 0.72);
+    }
+    .hoverable_menu_div .productHead{
+        font-weight: 700;
+        font-size:9px;
+        color: #676767;
+        line-height: 2.5;
+    }
+    .subProduct .producttabs{
+        border:1px solid rgba(220, 216, 216, 0.72);
+        border-right:none; 
+        border-top:1px solid #fff;
+        max-height: 105px;
+    }
+    .hoverable_menu_div .subProduct{
+        padding:0;
+    }
+    .producttabs:hover{
+        border-bottom: 1px solid #f84;
+    }
+    .productSection{
+        padding: 40px 0;
+    }
+    .colorA i{
+        color:  #5babdc;
+    }
+    .colorB i{
+         color: #f84;
+    }
+    .colorC i{
+         color: #4be27a;
+    }
+    .colorA:hover{
+        border-bottom:1px solid #5babdc !important;
+    }
+    .colorB:hover{
+        border-bottom:1px solid #F84 !important;
+    }
+    .colorC:hover{
+        border-bottom:1px solid #4be27a !important;
+    }
+    .producttabs a{ 
+        color:#000;
+    }
+    .producttabs a:hover{ 
+        background: transparent;
+    }
+    
+    .aboutProduct{
+        padding:10px;
+        color: #636363;
+    }
+    .allproducts p
+    {   font-size: 13px;
+        color: #9e9e9e; 
+        padding: 5px 0;
+    }
+    .producttabs img{
+        padding: 5px 0;
+    }
+    .blnone{
+        border-left:none !important; 
+        border-right: 1px solid rgba(220, 216, 216, 0.72) !important; 
+        border-bottom: none !important;
+    }
+    .bor-right {
+        border-right: 1px solid rgba(220, 216, 216, 0.72);
+    }
+    /* <!-- css start --> */
+    .demo-account{
+        font-weight: bold;
+        color: #f8f8f8 !important;
+        border-radius: 4px !important;
+        border: 1px solid;
+        padding: 0px 15px !important;
+        margin-top: 8px;
+        background: #486c96 !important;
+        position: relative;
+        height: 32px;
+    line-height: 2;
+    }
+    svg .pulse-disk {
+        fill: #23ff66;
+    }
+    .pulse-disk {
+        r: 6;
+    }
+    svg .pulse-circle, svg .pulse-circle-2 {
+        stroke: #23ff66;
+    }
+    .pulse-circle {
+        r: 4;
+        animation: pulse 3s cubic-bezier(0.39, 0.54, 0.41, 1.5) infinite;
+    }
+    .pulse-circle, .pulse-circle-2 {
+        transform-origin: center;
+        stroke-width: 2;
+        fill: none;
+        transform: translate3d(0, 0, 0);
+    }
+    .pulse-circle-2 {
+        stroke: #23ff66;
+    }
+    .pulse-circle-2 {
+        r: 16;
+        animation: pulse-2 3s cubic-bezier(0.39, 0.54, 0.41, 1.5) infinite;
+    }
+    @keyframes pulse {
+        0% { r: 4;}
+
+        50% {
+            r: 16;
+            opacity: 1;
+        }
+
+        99% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 0;
+            r: 16;
+        }
+    }
+
+    @keyframes pulse-2 {
+        0% {
+            opacity: 1;
+        }
+
+        40% {
+            opacity: 0;
+        }
+
+        49.99% {
+            r: 16;
+            opacity: 0;
+        }
+
+        50% {
+            r: 4;
+            opacity: 1;
+        }
+
+        100% {
+            r: 16;
+            opacity: 1;
+        }
+    }  
+    .blink-icon{
+        position: absolute;
+        top: -9px;
+        left: -9px;
+    }     
+    .demo-active{
+        padding: 0px 10px 0px 30px !important;
+    }  
+    .demo-account:focus{
+        outline: none;
+    }  
+  /* <!-- css end -->           */
+</style>
+
+<script>
+    $(document).ready(function () {
+        $("#headerbox li:not('.nonAjax') > a, #tutorial ,#upgrade").click(function (e) {
+            var url = $(this).attr("href");
+            e.preventDefault();
+            customAjaxCall(url, '', changeMainBodyContent);
+        });
+    
+    $('.demo-account').click(function(){
+        var url = '<?php echo $this->appUrls['BRAND_DEMO_ACCOUNT_URL']; ?>';
+        var actionFun = $('.demo-account').data("action");
+        var data = {
+            action : actionFun
+        }
+        customAjaxCall(url, data);
+    });
+
+});
+</script>
+
+
+
+<style>
+    .dropdown-content
+    {
+        color:#ee6e73;
+    }
+    .top{
+        min-width: 185px;
+        top:51px !important;
+    }
+    .nav_menu_bar{
+        padding: 0 25px;
+    }
+    .dropdown-content li>a, .dropdown-content li>span{
+        color:#357ae8;
+    }
+    .dropdown-content li>a{
+        font-size: 13px;
+    }
+    .heat_nav
+    {
+        background-color: #486c96 !important;
+    }
+    .mobile_icon{
+        font-size: 1.5em;
+        margin:0 0 0 0px!important;
+    }
+    .mail_icon{
+        font-size: 1em;
+        margin:0 0 0 0px!important;
+    }
+    nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
+        height: 50px !important;
+        line-height: 50px !important;
+    }
+    .dropdown-content li>a {
+        line-height: 50px;
+        padding: 0px;
+        padding-left: 15px;
+    }
+    .dropdown-content li>a{
+        color: #000;
+    }
+    .heat_nav_head{
+        position: fixed; 
+        top: 0;
+        z-index:1000;
+    }
+    .dropdownFstLi{
+        line-height: 30px;
+    }
+    .insideUl{
+        display: flex;
+    }
+    .insideUl li:hover{
+        border-color: #eee;
+    }
+    .insideUl li a:hover{
+        background-color: white;
+    }
+    #dropdown1{
+        width: 715px !important;
+    }
+    .listContent li a img{
+        height: 35px;
+        width: auto;
+        margin-top: 15px;
+    }
+    .listContent li a{
+        text-align: center !important;
+        color: #526071 !important;
+        font-size: 12px !important;
+        font-family: sans-serif !important;
+        padding-left: 0px !important;
+    }
+    .listContent li{
+            min-width: 110px;
+            margin: 5px;
+            background-color: #fff !important;
+            border: 1px solid white;
+    }
+    .insideList li{
+        background-color: #fff !important;
+    }
+    .liCls li{
+        height: 30px !important;
+        min-height: 0px !important;
+    }
+    .liCls li a{
+        height: 30px !important;
+        min-height: 0px !important;
+        line-height: 30px !important;
+        padding-right: 10px;
+    }
+    .liCls li a i{
+        height: 30px !important;
+        min-height: 0px !important;
+        line-height: 30px !important;
+        width: 12px;
+    }
+    .allProductsHeading{
+        min-height: 30px !important;        
+    }
+    .aphSpan{
+        color:#737373!important; 
+        padding-left: 294px!important;
+        padding-bottom: 0px!important;
+        font-size: 10px!important;
+    }
+    .allProductsHeading:hover{
+        background-color: white !important;
+    }
+    .intergrationHeading:hover{
+        background-color: white !important;
+    }
+    .intergrationHeading{
+        min-height: 30px !important;
+    }
+    .intergrationHeading span{
+        color:#737373!important; 
+        text-align: center;
+        padding-bottom: 0px!important;
+        font-size: 10px!important;
+    }
+    .overlayEffect{ background-color: #000000; bottom: 0; color: #FFFFFF; left: 0; opacity: 0.5; position: fixed; top: 50px; width: 100%;}
+    .notifyiconClass{display: inline-block; background: #fff; width: 250px; padding: 10px; height: 51px;}
+</style>
+<nav class="heat_nav_head">  
+    <div class="nav-wrapper heat_nav " id="headerbox">
+        <a class="notifyiconClass" href="https://www.notifyvisitors.com">
+        <img src="https://s3.amazonaws.com/notifyvisitors/static/notifylogo_black.png" class="">
+            </a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right: 10px;">
+            <?php if ($this->currentAccount['account'] != 2) {  ?>
+            <li ><a id="upgrade" style="display: flex;" href='<?php print $this->appUrls['BRAND_UPGRADE_SUBSCRIPTION_URL']; ?>' ><i class="material-icons" style="color: #dff528;padding-right: 10px;">warning</i> Account Not Upgraded - Upgrade Now</a></li>
+            <?php } ?>
+            
+            <div id="demo" class="text-normal nav-profile"  style="float: left;">
+                <button class="demo-account <?php echo $this->selfUID == $this->config->item('demo_account')? "demo-active":"";?>" data-action="<?php echo $this->selfUID == $this->config->item('demo_account')? "unset":"set";?>">
+                <?php 
+                    if($this->selfUID == $this->config->item('demo_account')){
+                        echo '<svg class="pulse blink-icon" x="0px" y="0px" width="50px" height="50px" viewBox="0 0 100 100">
+                            <circle class="pulse-disk" cx="50" cy="50"></circle>	
+                            <circle class="pulse-circle" cx="50" cy="50" stroke-width="2"></circle>
+                            <circle class="pulse-circle-2" cx="50" cy="50" stroke-width="2"></circle>
+                        </svg>';
+                        echo "Switch main account";
+                    }else{
+                        echo "Explore demo account";
+                    }
+                ?>
+                </button>
+            </div>
+
+            <li class="nonAjax">
+                <a class='dropdown-button nav_menu_bar' href='#' data-activates='dropdown1'>
+                    <i class="material-icons left" style="color: #fff;    margin-right: 5px;">apps</i>
+                    <span style="font-weight: bold;"><?php echo $this->product_name; ?></span>
+                </a>
+            </li> 
+            <!-- Dropdown Structure -->
+            <li>
+            <div id="dropdown1" class="dropdown-content top">
+            <div class="overlayEffect"></div>
+            <div class="hoverable_menu_div">
+                <div class="doc">
+                    <div class="">
+            <div class="row center-align    ">
+                    <div class="col s12 m12 notify_all_products">
+                    <div class="col s6 text-center allproducts">
+                          <h3>Customer Engagement Software</h3>
+                                <div class="col s12 mainProducts">
+                                    <div class="col s4 producttabs colorA bor-right">
+                                        <a href="<?php print $this->urls['PARENT_PUSH_URL'];?>">
+                                        <div class="">                                                            
+                                            <img src="https://s3.amazonaws.com/notifyvisitors/site/nv-icons/push.png" height="45px" alt="web-push">  
+                                                <div class="productHead">WEB PUSH</div>
+                                        </div>
+                                        </a>
+                                    </div>
+                                    <div class="col s4 producttabs colorA bor-right">
+                                        <a href="<?php print $this->urls['PARENT_PUSH_MOBILE_URL']?>">
+                                        <div class="">
+                                                <img src="https://s3.amazonaws.com/notifyvisitors/site/nv-icons/mob-push.png" height="45px"  alt="app-push">
+                                                <div class="productHead">APP PUSH</div>
+                                        </div>
+                                        </a>
+                                    </div>    
+                                    <div class="col s4 producttabs colorA ">
+                                        <a href="javascript:void(0)">
+                                            <div class="">
+                                                    <img src="https://s3.amazonaws.com/notifyvisitors/site/nv-icons/chatbot-icon.png" height="45px" style="filter: grayscale(100%)" alt="chatbot">
+                                                    <div class="productHead">CHATBOT <span style="color: #f8972a;">       ( COMING SOON )</span></div>
+                                            </div>    
+                                        </a>
+                                    </div> 
+                                </div>  
+                                <div class="col s12 subProduct">
+                                    <div class="col s3 producttabs colorA" style="border-left:none;">
+                                        <a href="<?php print $this->urls['PARENT_BANNER_URL'];?>">
+                                        <div class="">
+                                                <img src="https://s3.amazonaws.com/notifyvisitors/site/nv-icons/web-banner.png" height="45px" alt="web-banner">
+                                                <div class="subHead">WEB BANNER</div>
+                                        </div>
+                                        </a>
+                                    </div>
+                                    <div class="col s3 producttabs colorA">
+                                        <a href="<?php print $this->urls['PARENT_SURVEY_URL'];?>">
+                                        <div class="">
+                                                <img src="https://s3.amazonaws.com/notifyvisitors/site/nv-icons/web-survey.png" height="45px" alt="web-survey">
+                                                <div class="subHead">WEB SURVEY</div>
+                                        </div>
+                                        </a>
+                                    </div>
+                                    <div class="col s3 producttabs colorA">
+                                        <a href="<?php print $this->urls['PARENT_MOBILE_URL'];?>">
+                                        <div class="">
+                                            <img src="https://s3.amazonaws.com/notifyvisitors/site/nv-icons/mobile-banner.png" height="45px" alt="mobile-banner">
+                                            <div class="subHead">MOBILE BANNER</div>
+                                        </div>  
+                                        </a>
+                                    </div>
+                                    <div class="col s3 producttabs colorA">
+                                        <a href="<?php print $this->urls['PARENT_INAPP_SURVEY_URL'];?>">
+                                        <div class="">
+                                            <img src="https://s3.amazonaws.com/notifyvisitors/site/nv-icons/mobile-survey.png" height="45px" alt="mobile-survey">
+                                            <div class="subHead">MOBILE SURVEY</div>
+                                        </div>
+                                        </a>
+                                    </div>   
+                                    <div class="col s3 producttabs colorA" style="border-bottom:none; border-left:none;">
+                                        <a href="<?php print $this->urls['PARENT_MAIL_URL'];?>">
+                                        <div class="">
+                                                <img src="https://s3.amazonaws.com/notifyvisitors/site/nv-icons/email.png" height="45px" alt="email">
+                                                <div class="subHead">EMAIL & SMS</div>
+                                        </div>
+                                        </a>  
+                                    </div>
+                                    <div class="col s3 producttabs colorA" style="border-bottom:none;">
+                                        <a href="<?php print $this->urls['PARENT_LEAD_FORM_URL'];?>">
+                                        <div class="">
+                                        <img src="https://s3.amazonaws.com/notifyvisitors/site/nv-icons/leadform-icon.png" style="width: 37px;" alt="leadform">
+                                        <div class="subHead">LEAD FORMS</div>
+                                    </div>
+                                        </a>
+                                    </div>
+                                    <div class="col s3 producttabs colorA" style="border-bottom:none;border-right: none;">
+                                        <a href="<?php print $this->urls['PARENT_NPS_URL'];?>" style="padding: 0;">
+                                        <div class="">
+                                        <img src="https://s3.amazonaws.com/notifyvisitors/site/nv-icons/net-pro.png" height="46px" alt="net-promoter-score">
+                                        <div class="subHead">NET PROMOTER <span class="pwa">SCORE</span></div>
+                                    </div>
+                                        </a>
+                                    </div>
+                                    <div class="col s3 producttabs colorA" style="border-bottom:none;">
+                                        <a href="<?php print $this->urls['PARENT_PWA_URL'];?>" style="padding: 0;">
+                                        <div class="">
+                                        <img src="https://s3.amazonaws.com/notifyvisitors/admin/pwa.png"  height="45px" width="19px" alt="PWA">
+                                        <div class="subHead">PROGRESSIVE WEB APP</div>
+                                    </div>
+                                        </a>
+                                    </div>
+                                </div>  
+                            </div>
+                            <div class="forclearfix"></div>
+                            <div class="col s4 text-center allproducts">
+                                <h3>Conversion Rate Optimisation Software</h3> 
+                                <div class="col s12 mainProducts">
+                                    <div class="col s6 producttabs colorB bor-right">
+                                        <a href="<?php print $this->urls['PARENT_AB_TEST_URL'];?>">
+                                        <div class="">
+                                                <img src="https://s3.amazonaws.com/notifyvisitors/site/nv-icons/ab.png" height="45px" alt="ab-test">
+                                                <div class="productHead">AB TESTING</div>
+                                        </div>
+                                        </a>
+                                    </div>
+                                    <div class="col s6 producttabs colorB">
+                                        <a href="<?php print $this->urls['PARENT_HEATMAPS_URL'];?>">
+                                        <div class="">
+                                                <img src="https://s3.amazonaws.com/notifyvisitors/site/nv-icons/hm.png" height="45px" alt="heatmap">
+                                                <div class="productHead">HEATMAPS</div>
+                                        </div>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="col s12 subProduct">
+                                    <div class="col s6 producttabs colorB" style="border-left: none; border-right: 1px solid rgba(220, 216, 216, 0.72);">
+                                        <a href="<?php print $this->urls['PARENT_PERSONALISATION_URL'];?>">
+                                        <div class="">
+                                                <img src="https://s3.amazonaws.com/notifyvisitors/site/nv-icons/personalisation.png" height="45px" alt="personalisation-icon">
+                                                <div class="subHead">PERSONALISATION</div>
+                                        </div>
+                                        </a>
+                                    </div>
+                                    <div class="col s6 producttabs colorB" style="border-left: none;">
+                                        <a href="<?php print $this->urls['PARENT_FORM_ANALYSIS_URL'];?>">
+                                        <div class="">
+                                                <img src="https://s3.amazonaws.com/notifyvisitors/site/nv-icons/form-analysis.png" height="45px" alt="form-analysis">
+                                                <div class="subHead">FORM-ANALYSIS</div>
+                                        </div>
+                                        </a>
+                                    </div>
+                                    <div class="col s6 producttabs colorB blnone">
+                                        <a href="<?php print $this->urls['PARENT_SPLIT_URL_AB_TEST_URL'];?>">
+                                        <div class="">
+                                                <img src="https://s3.amazonaws.com/notifyvisitors/site/nv-icons/split-url.png" height="45px" alt="split-url" >
+                                                <div class="subHead ">SPLIT URL AB TESTING</div>
+                                        </div>
+                                        </a>
+                                    </div>
+                                    <div class="col s6 producttabs colorB" style="border-left:none; border-bottom: none;">
+                                        <a href="<?php print $this->urls['PARENT_USER_SESSION_URL'];?>">
+                                        <div class="">
+                                            <img src="https://s3.amazonaws.com/notifyvisitors/site/nv-icons/recording.png" height="45px" alt="user-recording">
+                                            <div class="subHead">USER SESSION REPLAY</div>
+                                        </div>   
+                                        </a>
+                                    </div>                
+                                </div>  
+                            </div>
+                            <div class="forclearfix"></div>
+                            <div class="col s2 text-center allproducts" style="border-right: none;">
+                                <h3>Analytics</h3>
+                                <div class="col s12 mainProducts">
+                                    <div class="col s12 producttabs colorC">
+                                        <a href="<?php print $this->urls['PARENT_JOURNEY_BUILDER_URL'];?>">
+                                        <div class="">
+                                            <img src="https://s3.amazonaws.com/notifyvisitors/site/nv-icons/journey.png" height="45px" alt="journey-builder">
+                                            <div class="productHead">JOURNEY BUILDER</div>
+                                        </div>
+                                        </a>
+                                    </div>    
+                                    </div>
+                                    <div class="col s12 mainProducts">
+                                        <div class="col s12 producttabs colorC forPosRel">
+                                        <a href="<?php print $this->urls['PARENT_ANALYTICS_URL'];?>">
+                                        <div class="">
+                                            <img src="https://s3.amazonaws.com/notifyvisitors/site/nv-icons/attribution.png" height="45px" alt="life-cycle-event">
+                                            <div class="productHead">LIFE CYCLE EVENT</div>
+                                        </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col s12 mainProducts"  style="border-bottom:none">
+                                        <div class="col s12 producttabs colorC forPosRel">
+                                        <a href="<?php print $this->urls['PARENT_SEGMENT_URL'];?>">
+                                        <div class="">
+                                            <img src="https://s3.amazonaws.com/notifyvisitors/site/nv-icons/segmentation.png" alt="segmentation-icon" width="36px;">
+                                            <div class="productHead">SEGMENTATION</div>
+                                          </div>
+                                        </div>
+                                        </a>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </li>
+            <!-- secondmenu option -->
+            <li class=" nonAjax"><a class='dropdown-button nav_menu_bar' href='#' data-activates='dropdown2'><i class="material-icons ">settings</i></a>
+                <div id='dropdown2' class="dropdown-content top" >
+                    <ul>
+                        <li class="intergrationHeading"><span>Integration</span></li>
+                        <li class="divider" style="width: 50%; margin-left: 50px;"></li>
+                    </ul>
+                    <br>
+                    <ul class='liCls'>
+                        <!--<li class="dropdownFstLi nonAjax"><a class="col-sm-3" href="#" style="background-color: #00b0ff; color: #fff; font-weight: bold; font-size: 16px;text-align: center;">Integration</a></li>-->
+                        <li class="nonAjax"><a href="<?php print $this->urls['PARENT_URL'] . 'brand/documentation/webJsIntegrationCode'; ?>" target="_blank"><i class="fa fa-desktop" aria-hidden="true"></i>Website</a></li>
+                        <li class="nonAjax"><a href="<?php print $this->urls['PARENT_URL'] . 'brand/documentation/android_sdk'; ?>" target="_blank"><i class="fa fa-android" aria-hidden="true"></i>Android</a></li>
+                        <li class="nonAjax"><a href="<?php print $this->urls['PARENT_URL'] . 'brand/documentation/ios_sdk'; ?>" target="_blank"><i class="fa fa-apple"></i>Ios</a></li>
+                    </ul>
+                </div>    
+            </li>
+            <!-- third menu option  -->
+            <li class=" nonAjax"><a class='dropdown-button nav_menu_bar' href='#' data-activates='dropdown3'><i class="material-icons" style="color: #fff;">credit_card</i></a>
+                <div id='dropdown3' class="dropdown-content top" >
+                <ul>
+                        <li class="intergrationHeading"><span>Billing & Upgrade</span></li>
+                        <li class="divider" style="width: 50%; margin-left: 50px;"></li>
+                    </ul>
+                    <br>
+                <ul class='liCls'>
+                    <li><a href="<?php print $this->appUrls['BRAND_UPGRADE_SUBSCRIPTION_URL']; ?>">Upgrade Plan</a></li>
+                    <li><a href="<?php print $this->appUrls['BRAND_CURRENT_SUBSCRIPTION_URL']; ?>">Current Plan</a></li>
+                </ul>
+                </div>
+            </li>
+
+            <!-- third menu option --> 
+            <li class=" nonAjax"><a class='dropdown-button nav_menu_bar' href='#' data-activates='dropdown4'><i class="material-icons">person_outline</i></a>
+                <ul id='dropdown4' class='dropdown-content top liCls'>
+                    <!--<l i class="dropdownFstLi nonAjax"><a class="col-sm-3" href="#" style="background-color: #00b0ff; color: #fff; font-weight: bold; font-size: 16px;text-align: center;"><?php print ucfirst($this->brandInfo['name']); ?></a></li>-->
+                    <li class=" nonAjax"><a href="<?php print $this->urls['PARENT_URL']."brand/admin/editBasicInfo";?>" target="_blank"><i class="fa fa-user"></i>Profile</a></li>
+                    <li class=" nonAjax"><a href="<?php print $this->urls['PARENT_URL']."brand/admin/editProfilePassword";?>" target="_blank"><i class="fa fa-unlock" aria-hidden="true"></i>Change Password</a></li>
+                    <li class=" nonAjax"><a href="<?php print $this->urls['PARENT_URL']."brand/admin/accountAccess";?>" target="_blank"><i class="fa fa-key" aria-hidden="true"></i>Account Access</a></li>
+                    <li class=" nonAjax"><a href="<?php print $this->urls['PARENT_URL']."brand/admin/accountLogs?panel=7";?>" target="_blank"><i class="fa fa-tasks" aria-hidden="true"></i>Account Logs</a></li>
+                    <li class=" nonAjax"><a href="<?php print $this->urls['PARENT_URL']."brand/admin/reportMail";?>" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i>Report Mail</a></li>
+                    <li><a href="<?php print $this->appUrls['BRAND_LOGOUT_URL'].'?productName=abtest'; ?>"><i class="fa fa-power-off"></i>Logout</a></li>
+                </ul>
+            </li>
+            
+        </ul>
+    </div>
+</nav>
+<script>
+    $('.dropdown-button').dropdown({
+        inDuration: 30,
+        outDuration: 30,
+        constrainWidth: false, // Does not change width of dropdown to that of the activator
+        hover: false, // Activate on hover
+        gutter: 0, // Spacing from edge
+        belowOrigin: false, // Displays dropdown below the button
+        alignment: 'left', // Displays dropdown with edge aligned to the left of button
+        stopPropagation: false // Stops event propagation
+    });
+</script>
